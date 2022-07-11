@@ -1,0 +1,9 @@
+﻿@using IMDBProject.Models.ViewModels
+@model ActorSelectViewModel
+
+
+<h3>Actor Select</h3>
+<form asp-action="ActorDetails">
+	<select name="actorId" asp-items="Model.ActorSelect"></select>
+	<button type="submit">Check Actor</button>
+</form>
