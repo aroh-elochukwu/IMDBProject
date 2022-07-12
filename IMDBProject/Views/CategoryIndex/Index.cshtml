@@ -1,0 +1,9 @@
+﻿@using IMDBProject.Models.ViewModels
+@model CategorySelectViewModel
+
+
+<h3>Category Select</h3>
+<form asp-action="CategoryDetails">
+	<select name="categoryID" asp-items="Model.CategorySelect"></select>
+	<button type="submit">Check Movies</button>
+</form>
