@@ -21,6 +21,27 @@ namespace IMDBProject.Controllers
             return View(vm);
         }
 
+        public IActionResult ActorCategory()
+        {
+            ActorCategorySelectViewModel vm = new ActorCategorySelectViewModel(_db.Categories.ToList());
+            return View(vm);
+        }
+
+        public IActionResult CategoryDetail(int? categoryId)
+        {
+            
+                try
+                {
+                    Category category = _db.Categories.Include(c => c.Movies).ThenInclude(m => m.Roles).ThenInclude(r => r.Actor).First(c => c.Id == categoryId);
+
+                    return View(category);
+                }catch
+                {
+                    return RedirectToAction("Error", "Home");
+                }
+            
+        } 
+
         public IActionResult ActorDetails(int? actorId)
         {
             if (actorId != null)
@@ -39,5 +60,7 @@ namespace IMDBProject.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
+
+        
     }
 }
