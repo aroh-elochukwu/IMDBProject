@@ -27,7 +27,7 @@ namespace IMDBProject.Controllers
             {
                 try
                 {
-                    Actor actor = _db.Actors.Include(a => a.Roles).First(a => a.Id == actorId);
+                    Actor actor = _db.Actors.Include(a => a.Roles).ThenInclude(r => r.Movie).First(a => a.Id == actorId);
                     return View(actor);
                 } catch
                 {
